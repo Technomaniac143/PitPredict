@@ -1,0 +1,5 @@
+f1_cache/
+artifacts/
+.venv/
+__pycache__/
+*.pyc
