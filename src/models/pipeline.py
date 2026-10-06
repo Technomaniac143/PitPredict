@@ -16,14 +16,14 @@ if not os.path.exists(MODEL_DIR):
 
 class PitPredictPipeline:
     def __init__(self):
-        # GPU Acceleration enabled via device='cuda' and tree_method='hist'
+        # GPU Acceleration disabled to prevent Streamlit CUDA threading deadlocks
         self.xgb_reg = XGBRegressor(
             n_estimators=150, learning_rate=0.1, max_depth=5, 
-            random_state=42, tree_method='hist', device='cuda'
+            random_state=42, tree_method='hist', device='cpu'
         )
         self.xgb_clf = XGBClassifier(
             n_estimators=150, eval_metric='logloss', 
-            random_state=42, tree_method='hist', device='cuda'
+            random_state=42, tree_method='hist', device='cpu'
         )
         
         self.data = pd.DataFrame()
